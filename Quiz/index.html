@@ -1,111 +1,291 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quiz de Conjuntos</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Quiz Premium - Teoria dos Conjuntos</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
 body{
-  font-family:'Segoe UI',sans-serif;
-  background:linear-gradient(135deg,#0f172a,#1e293b,#312e81);
-  height:100vh;
+  font-family:'Poppins',sans-serif;
+  min-height:100vh;
+  background:
+  radial-gradient(circle at top left,#312e81 0%,transparent 35%),
+  radial-gradient(circle at bottom right,#0ea5e9 0%,transparent 30%),
+  linear-gradient(135deg,#020617,#0f172a,#111827);
+  color:white;
   display:flex;
   justify-content:center;
   align-items:center;
-  color:#fff;
+  padding:20px;
 }
 
 .container{
   width:100%;
-  max-width:720px;
-  padding:30px;
-  border-radius:20px;
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(20px);
+  max-width:900px;
+  background:rgba(255,255,255,0.06);
   border:1px solid rgba(255,255,255,0.1);
-  box-shadow:0 25px 60px rgba(0,0,0,0.5);
+  backdrop-filter:blur(18px);
+  border-radius:28px;
+  overflow:hidden;
+  box-shadow:
+  0 20px 80px rgba(0,0,0,.5),
+  inset 0 1px 1px rgba(255,255,255,.08);
 }
 
-h1{
-  text-align:center;
-  margin-bottom:20px;
-  background:linear-gradient(90deg,#38bdf8,#a78bfa);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+.topo{
+  padding:30px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.03);
 }
 
-select,button{
-  width:100%;
-  padding:12px;
-  border-radius:12px;
-  border:none;
-  margin-top:10px;
-  font-size:15px;
+.logo{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.logo-icon{
+  width:60px;
+  height:60px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#38bdf8,#8b5cf6);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:28px;
+  box-shadow:0 10px 30px rgba(99,102,241,.5);
+}
+
+.logo h1{
+  font-size:30px;
+  font-weight:700;
+}
+
+.logo p{
+  color:#cbd5e1;
+  font-size:14px;
+  margin-top:4px;
+}
+
+.content{
+  padding:35px;
+}
+
+.card{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:24px;
+  padding:30px;
+}
+
+.hidden{
+  display:none;
 }
 
 select{
+  width:100%;
+  padding:16px;
+  margin-top:15px;
+  border:none;
+  outline:none;
+  border-radius:16px;
   background:#0f172a;
   color:white;
+  font-size:16px;
   border:1px solid #334155;
 }
 
 button{
-  background:linear-gradient(90deg,#38bdf8,#6366f1);
-  color:white;
-  font-weight:bold;
+  border:none;
   cursor:pointer;
+  transition:.3s;
+  font-family:'Poppins',sans-serif;
 }
 
-.hidden{display:none}
+.btn{
+  padding:15px 22px;
+  border-radius:16px;
+  font-weight:600;
+  font-size:15px;
+}
 
-.pergunta{
-  margin:20px 0;
+.btn-primary{
+  background:linear-gradient(135deg,#0ea5e9,#6366f1);
+  color:white;
+  width:100%;
+  margin-top:18px;
+  box-shadow:0 10px 25px rgba(14,165,233,.3);
+}
+
+.btn-primary:hover{
+  transform:translateY(-2px);
+}
+
+.info-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:25px;
+  flex-wrap:wrap;
+  gap:15px;
+}
+
+.badge{
+  padding:10px 18px;
+  border-radius:999px;
+  background:rgba(56,189,248,.15);
+  border:1px solid rgba(56,189,248,.25);
+  color:#7dd3fc;
+  font-size:14px;
+}
+
+#pergunta{
+  font-size:24px;
   line-height:1.6;
+  margin-bottom:30px;
+  font-weight:500;
 }
 
 .opcao{
-  background:#0f172a;
+  padding:18px;
+  margin-bottom:15px;
+  border-radius:18px;
+  background:rgba(15,23,42,.8);
   border:1px solid #334155;
-  padding:12px;
-  border-radius:12px;
-  margin:10px 0;
+  transition:.25s;
   cursor:pointer;
+  position:relative;
+  overflow:hidden;
 }
 
-.opcao:hover{background:#1e293b}
+.opcao:hover{
+  transform:translateX(5px);
+  border-color:#38bdf8;
+  background:#172033;
+}
 
-.correto{background:#16a34a !important}
-.errado{background:#dc2626 !important}
+.opcao strong{
+  color:#7dd3fc;
+  margin-right:8px;
+}
+
+.correto{
+  background:rgba(22,163,74,.25)!important;
+  border-color:#22c55e!important;
+}
+
+.errado{
+  background:rgba(220,38,38,.25)!important;
+  border-color:#ef4444!important;
+}
 
 #feedback{
-  margin-top:15px;
-  padding:12px;
-  border-radius:12px;
-  background:#020617;
-  border-left:4px solid #38bdf8;
+  margin-top:25px;
+  padding:18px;
+  border-radius:18px;
+  background:rgba(2,6,23,.9);
+  border-left:5px solid #38bdf8;
+  color:#e2e8f0;
+  line-height:1.6;
+}
+
+.acoes{
+  display:flex;
+  gap:12px;
+  margin-top:25px;
+  flex-wrap:wrap;
+}
+
+.btn-sec{
+  flex:1;
+  background:#1e293b;
+  color:white;
+}
+
+.btn-sec:hover{
+  background:#334155;
+}
+
+.btn-next{
+  flex:2;
+  background:linear-gradient(135deg,#38bdf8,#8b5cf6);
+  color:white;
+}
+
+.btn-next:hover{
+  transform:translateY(-2px);
 }
 
 #progresso{
-  margin-top:15px;
-  height:8px;
+  width:100%;
+  height:12px;
   background:#0f172a;
-  border-radius:20px;
+  border-radius:999px;
+  margin-top:30px;
+  overflow:hidden;
 }
 
 #barra{
   height:100%;
   width:0%;
-  background:linear-gradient(90deg,#38bdf8,#a78bfa);
+  background:linear-gradient(90deg,#38bdf8,#8b5cf6);
+  transition:.4s;
 }
 
 #resultado{
   text-align:center;
-  font-size:22px;
-  margin-top:20px;
 }
+
+.resultado-box{
+  padding:40px;
+}
+
+.resultado-box h2{
+  font-size:40px;
+  margin-bottom:15px;
+}
+
+.resultado-box p{
+  font-size:20px;
+  color:#cbd5e1;
+}
+
+.nota{
+  font-size:70px;
+  font-weight:700;
+  margin:20px 0;
+  background:linear-gradient(90deg,#38bdf8,#a78bfa);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+@media(max-width:700px){
+
+  .content{
+    padding:20px;
+  }
+
+  #pergunta{
+    font-size:20px;
+  }
+
+  .acoes{
+    flex-direction:column;
+  }
+
+}
+
 </style>
 </head>
 
@@ -113,27 +293,73 @@ button{
 
 <div class="container">
 
-<h1>📚 Quiz de Conjuntos</h1>
+<div class="topo">
 
-<div id="inicio">
-<select id="nivel">
-<option value="facil">Fácil</option>
-<option value="medio">Médio</option>
-<option value="dificil">Difícil</option>
-</select>
-<button onclick="iniciar()">Iniciar Avaliação</button>
+<div class="logo">
+<div class="logo-icon">📘</div>
+
+<div>
+<h1>Teoria dos Conjuntos</h1>
+<p>Plataforma Interativa de Avaliação</p>
+</div>
 </div>
 
-<div id="quiz" class="hidden">
+</div>
+
+<div class="content">
+
+<div id="inicio" class="card">
+
+<h2>Escolha o nível</h2>
+
+<select id="nivel">
+<option value="facil">🟢 Fácil — Conceitos Teóricos</option>
+<option value="medio">🟡 Médio — Operações e Aplicações</option>
+<option value="dificil">🔴 Difícil — Expressões e Problemas</option>
+</select>
+
+<button class="btn btn-primary" onclick="iniciar()">
+Iniciar Avaliação
+</button>
+
+</div>
+
+<div id="quiz" class="hidden card">
+
+<div class="info-top">
+<div class="badge" id="contador"></div>
+<div class="badge" id="nivelBadge"></div>
+</div>
+
 <div id="pergunta"></div>
+
 <div id="opcoes"></div>
+
 <div id="feedback"></div>
-<button onclick="proxima()">Próxima</button>
-<div id="progresso"><div id="barra"></div></div>
+
+<div class="acoes">
+<button class="btn btn-sec" onclick="voltarInicio()">
+⬅ Voltar ao início
+</button>
+
+<button class="btn btn-sec" onclick="pularPergunta()">
+⏭ Pular
+</button>
+
+<button class="btn btn-next" onclick="proxima()">
+Próxima questão →
+</button>
+</div>
+
+<div id="progresso">
+<div id="barra"></div>
+</div>
+
 </div>
 
 <div id="resultado"></div>
 
+</div>
 </div>
 
 <script>
@@ -141,110 +367,347 @@ button{
 const perguntas = {
 
 facil:[
-{q:"Na teoria dos conjuntos, considere um conjunto A formado pelos números naturais menores que 5. Qual das alternativas representa corretamente esse conjunto?",op:["{0,1,2,3,4}","{1,2,3,4,5}","{1,2,3,4}","{0,1,2,3,4,5}"],r:0,exp:"Naturais menores que 5 incluem 0 até 4."},
 
-{q:"Sejam A={1,2,3} e B={3,4,5}. A união A ∪ B é:",op:["{1,2,3}","{3}","{1,2,3,4,5}","{4,5}"],r:2,exp:"União reúne todos elementos sem repetição."},
+{
+q:"O que é um conjunto na Matemática?",
+op:[
+"Uma sequência numérica obrigatória",
+"Uma coleção de elementos bem definidos",
+"Uma operação matemática",
+"Um tipo de equação"
+],
+r:1,
+exp:"Conjunto é uma coleção de elementos bem definidos."
+},
 
-{q:"Considerando A={2,4,6} e B={1,2,3,4}, a interseção A ∩ B é:",op:["{2,4}","{1,3}","{6}","{2,3,4}"],r:0,exp:"Elementos comuns são 2 e 4."},
+{
+q:"Qual símbolo representa a ideia de 'pertence' a um conjunto?",
+op:["⊂","∈","∪","∩"],
+r:1,
+exp:"O símbolo ∈ significa 'pertence'."
+},
 
-{q:"Um conjunto A é subconjunto de B quando:",op:["A possui mais elementos que B","Todos os elementos de A pertencem a B","A e B são iguais","Não há relação"],r:1,exp:"Definição de subconjunto."},
+{
+q:"Quando um conjunto não possui elementos, ele é chamado de:",
+op:[
+"Conjunto unitário",
+"Conjunto universo",
+"Conjunto vazio",
+"Conjunto infinito"
+],
+r:2,
+exp:"Conjunto vazio não possui elementos."
+},
 
-{q:"O conjunto vazio é representado por:",op:["{0}","{}","[]","{ }"],r:1,exp:"{} representa conjunto vazio."},
+{
+q:"Dois conjuntos são iguais quando:",
+op:[
+"Possuem a mesma quantidade de elementos",
+"Possuem exatamente os mesmos elementos",
+"São vazios",
+"São infinitos"
+],
+r:1,
+exp:"Conjuntos iguais possuem os mesmos elementos."
+},
 
-{q:"Se A={1,2,3}, então A ∪ A é:",op:["{1,2,3}","{ }","{1}","Erro"],r:0,exp:"União com ele mesmo mantém o conjunto."},
+{
+q:"Um subconjunto é:",
+op:[
+"Um conjunto dentro de outro conjunto",
+"Um conjunto vazio",
+"Um conjunto maior",
+"Um conjunto sem relação"
+],
+r:0,
+exp:"Subconjunto possui todos os elementos contidos em outro conjunto."
+},
 
-{q:"Se A={1,2,3}, então A ∩ A é:",op:["{1,2,3}","{ }","{2}","Erro"],r:0,exp:"Interseção com ele mesmo é o próprio conjunto."},
+{
+q:"O conjunto universo representa:",
+op:[
+"Todos os elementos considerados em determinado contexto",
+"Somente números naturais",
+"Todos os conjuntos vazios",
+"Somente subconjuntos"
+],
+r:0,
+exp:"O universo contém todos os elementos analisados."
+},
 
-{q:"O complemento de A em relação ao universo U contém:",op:["Elementos de A","Elementos fora de A","Todos os elementos","Nenhum"],r:1,exp:"Complemento são elementos fora de A."},
+{
+q:"A união entre conjuntos representa:",
+op:[
+"Elementos comuns",
+"Elementos exclusivos",
+"Todos os elementos dos conjuntos",
+"Somente os elementos repetidos"
+],
+r:2,
+exp:"União reúne todos os elementos."
+},
 
-{q:"Se A ⊂ B, podemos afirmar que:",op:["A contém B","A está contido em B","A é maior que B","A é igual a B"],r:1,exp:"Subconjunto."},
+{
+q:"A interseção entre conjuntos representa:",
+op:[
+"Os elementos em comum",
+"Todos os elementos",
+"Os elementos diferentes",
+"Os elementos do universo"
+],
+r:0,
+exp:"Interseção reúne elementos comuns."
+},
 
-{q:"A interseção entre dois conjuntos disjuntos resulta em:",op:["Conjunto vazio","União","A","B"],r:0,exp:"Sem elementos em comum."}
+{
+q:"Conjuntos disjuntos são conjuntos que:",
+op:[
+"Possuem todos os elementos iguais",
+"Não possuem elementos em comum",
+"São vazios",
+"São subconjuntos"
+],
+r:1,
+exp:"Conjuntos disjuntos não têm elementos em comum."
+},
+
+{
+q:"O complemento de um conjunto representa:",
+op:[
+"Os elementos pertencentes ao conjunto",
+"Os elementos fora do conjunto em relação ao universo",
+"Os elementos repetidos",
+"Os elementos comuns"
+],
+r:1,
+exp:"Complemento são os elementos fora do conjunto."
+}
+
 ],
 
 medio:[
-{q:"Considere A={1,2,3} e B={2,3,4}. Determine A ∪ B.",op:["{1,2,3,4}","{2,3}","{1,4}","{3,4}"],r:0,exp:"União reúne todos."},
 
-{q:"Com os mesmos conjuntos, A ∩ B é:",op:["{1}","{2,3}","{4}","{1,2}"],r:1,exp:"Comuns: 2 e 3."},
+{
+q:"Se A={1,2,3} e B={2,3,4}, determine A ∪ B.",
+op:["{1,2,3,4}","{2,3}","{1,4}","{3,4}"],
+r:0,
+exp:"União reúne todos os elementos."
+},
 
-{q:"Se A ⊂ B e B ⊂ C, então:",op:["A ⊂ C","C ⊂ A","A = B","Nenhuma"],r:0,exp:"Propriedade transitiva."},
+{
+q:"Se A={1,2,3} e B={2,3,4}, determine A ∩ B.",
+op:["{1}","{2,3}","{4}","{1,2}"],
+r:1,
+exp:"Interseção contém os elementos comuns."
+},
 
-{q:"O número de subconjuntos de {1,2} é:",op:["2","4","3","1"],r:1,exp:"2² = 4."},
+{
+q:"O número de subconjuntos do conjunto {1,2} é:",
+op:["2","4","3","1"],
+r:1,
+exp:"2² = 4 subconjuntos."
+},
 
-{q:"O complemento de A em U={1,2,3,4} e A={1,2} é:",op:["{3,4}","{1,2}","{ }","{4}"],r:0,exp:"Fora de A."},
+{
+q:"A diferença A-B representa:",
+op:[
+"Os elementos comuns",
+"Os elementos de A que não estão em B",
+"Todos os elementos",
+"Os elementos de B"
+],
+r:1,
+exp:"Diferença remove os elementos presentes em B."
+},
 
-{q:"A ∩ ∅ é:",op:["A","∅","Erro","Outro"],r:1,exp:"Interseção com vazio."},
+{
+q:"Se A={1,2} e B={1,2,3}, então:",
+op:["A=B","A⊂B","B⊂A","Nenhuma"],
+r:1,
+exp:"Todos os elementos de A estão em B."
+},
 
-{q:"A ∪ ∅ é:",op:["A","∅","Erro","Outro"],r:0,exp:"União com vazio."},
+{
+q:"A ∩ ∅ é:",
+op:["A","∅","Erro","Outro"],
+r:1,
+exp:"Nada em comum com o vazio."
+},
 
-{q:"Dois conjuntos são iguais quando:",op:["Têm mesmo número de elementos","Têm mesmos elementos","São subconjuntos","Nenhuma"],r:1,exp:"Mesmos elementos."},
+{
+q:"A ∪ ∅ é:",
+op:["A","∅","Erro","Outro"],
+r:0,
+exp:"União com vazio mantém o conjunto."
+},
 
-{q:"Se A={1,2} e B={1,2,3}, então:",op:["A=B","A⊂B","B⊂A","Nenhuma"],r:1,exp:"A está contido em B."},
+{
+q:"O complemento de A={1,2} em U={1,2,3,4} é:",
+op:["{3,4}","{1,2}","∅","{4}"],
+r:0,
+exp:"Complemento contém os elementos fora de A."
+},
 
-{q:"A diferença A-B representa:",op:["Elementos comuns","Elementos de A não em B","Elementos de B","Todos"],r:1,exp:"Diferença."}
+{
+q:"Se A ⊂ B e B ⊂ C, então:",
+op:["A ⊂ C","C ⊂ A","A = B","Nenhuma"],
+r:0,
+exp:"Propriedade transitiva."
+},
+
+{
+q:"Dois conjuntos possuem interseção vazia. Isso significa que:",
+op:[
+"São iguais",
+"São infinitos",
+"São disjuntos",
+"São complementares"
+],
+r:2,
+exp:"Sem elementos em comum."
+}
+
 ],
 
 dificil:[
-{q:"Sejam A={1,2,3}, B={2,3,4} e C={3,4,5}. Determine (A ∪ B) ∩ C.",op:["{2,3}","{3,4}","{3}","{4,5}"],r:1,exp:"A∪B={1,2,3,4}. Interseção com C → {3,4}."},
 
-{q:"Considere U={1,2,3,4,5,6}, A={1,2,3} e B={3,4}. Determine (A ∪ B)'.",op:["{4,5,6}","{1,2}","{5,6}","{3}"],r:2,exp:"A∪B={1,2,3,4}. Complemento → {5,6}."},
+{
+q:"Sejam A={1,2,3}, B={2,3,4} e C={3,4,5}. Determine (A ∪ B) ∩ C.",
+op:["{2,3}","{3,4}","{3}","{4,5}"],
+r:1,
+exp:"A∪B={1,2,3,4}. Interseção → {3,4}."
+},
 
-{q:"Sejam A={1,2,3,4} e B={2,4}. Determine (A - B) ∪ (A ∩ B).",op:["{1,3}","{2,4}","{1,2,3,4}","∅"],r:2,exp:"A-B={1,3} e A∩B={2,4}. União → todos de A."},
+{
+q:"Considere U={1,2,3,4,5,6}, A={1,2,3} e B={3,4}. Determine (A ∪ B)'.",
+op:["{4,5,6}","{1,2}","{5,6}","{3}"],
+r:2,
+exp:"Complemento de {1,2,3,4}."
+},
 
-{q:"Sejam A e B tais que A ⊂ B. Qual afirmação é sempre verdadeira?",op:[
-"A ∪ B = A",
-"A ∩ B = A",
-"A - B = A",
-"B ⊂ A"],r:1,exp:"Tudo de A já está em B."},
+{
+q:"Sejam A={1,2,3,4} e B={2,4}. Determine (A - B) ∪ (A ∩ B).",
+op:["{1,3}","{2,4}","{1,2,3,4}","∅"],
+r:2,
+exp:"Resultado final é o próprio conjunto A."
+},
 
-{q:"Considere A e B conjuntos quaisquer. Qual das alternativas representa corretamente a Lei de De Morgan?",op:[
+{
+q:"Qual alternativa representa corretamente uma Lei de De Morgan?",
+op:[
 "(A ∪ B)' = A' ∪ B'",
 "(A ∩ B)' = A ∩ B",
 "(A ∪ B)' = A ∩ B",
-"(A ∩ B)' = A' ∪ B'"],r:3,exp:"Lei correta: (A ∩ B)' = A' ∪ B'."},
+"(A ∩ B)' = A' ∪ B'"
+],
+r:3,
+exp:"Lei correta de De Morgan."
+},
 
-{q:"Se U={1,2,3,4,5}, A={1,2} e B={2,3}, determine (A' ∩ B).",op:["{2}","{1,3}","{3}","{4,5}"],r:2,exp:"A'={3,4,5}. Interseção com B → {3}."},
+{
+q:"Se U={1,2,3,4,5}, A={1,2} e B={2,3}, determine (A' ∩ B).",
+op:["{2}","{1,3}","{3}","{4,5}"],
+r:2,
+exp:"A'={3,4,5}. Interseção → {3}."
+},
 
-{q:"Um conjunto A possui 5 elementos. Quantos subconjuntos próprios ele possui?",op:["32","31","16","30"],r:1,exp:"2⁵=32 → próprios = 31."},
+{
+q:"Um conjunto com 5 elementos possui quantos subconjuntos próprios?",
+op:["32","31","16","30"],
+r:1,
+exp:"2⁵=32. Próprios = 31."
+},
 
-{q:"Sejam A={1,2,3}, B={3,4} e C={3}. Determine (A ∩ B) - C.",op:["{3}","{1,2}","{4}","∅"],r:3,exp:"A∩B={3}. Removendo C → vazio."},
+{
+q:"Se A={1,2,3}, B={3,4} e C={3}, determine (A ∩ B) - C.",
+op:["{3}","{1,2}","{4}","∅"],
+r:3,
+exp:"Remove o elemento 3."
+},
 
-{q:"Se A e B são disjuntos e não vazios, qual é o valor de |A ∩ B|?",op:["1","Depende","|A|","0"],r:3,exp:"Interseção vazia → 0."},
+{
+q:"Se A e B são disjuntos e não vazios, então |A ∩ B| é:",
+op:["1","Depende","|A|","0"],
+r:3,
+exp:"Interseção vazia."
+},
 
-{q:"Se A ⊂ B e |A|=3 e |B|=5, quantos elementos pertencem a B - A?",op:["5","3","1","2"],r:3,exp:"Diferença = 5 - 3 = 2."}
+{
+q:"Se A ⊂ B, |A|=3 e |B|=5, então |B-A| é:",
+op:["5","3","1","2"],
+r:3,
+exp:"5 - 3 = 2."
+},
+
+{
+q:"Se A={1,2,3,4} e B={2,3}, determine A-B.",
+op:["{2,3}","{1,4}","{1,2}","∅"],
+r:1,
+exp:"Remove os elementos de B."
+}
+
 ]
 
 };
 
-let nivel,i=0,nota=0,respondeu=false;
+let nivel;
+let i=0;
+let nota=0;
+let respondeu=false;
 
 function iniciar(){
+
 nivel=document.getElementById("nivel").value;
+
 document.getElementById("inicio").classList.add("hidden");
 document.getElementById("quiz").classList.remove("hidden");
-i=0;nota=0;
+
+i=0;
+nota=0;
+
 mostrar();
+
 }
 
 function mostrar(){
+
 respondeu=false;
-document.getElementById("feedback").innerHTML="";
+
 let p=perguntas[nivel][i];
 
-document.getElementById("pergunta").innerHTML=
-`<div class="pergunta"><h3>${i+1}/10</h3><p>${p.q}</p></div>`;
+document.getElementById("contador").innerHTML=
+`Questão ${i+1} de 10`;
+
+document.getElementById("nivelBadge").innerHTML=
+nivel.toUpperCase();
+
+document.getElementById("feedback").innerHTML="";
+
+document.getElementById("pergunta").innerHTML=p.q;
 
 let html="";
+
 p.op.forEach((op,index)=>{
-html+=`<div class="opcao" onclick="responder(${index})">${String.fromCharCode(65+index)}) ${op}</div>`;
+
+html+=`
+<div class="opcao" onclick="responder(${index})">
+<strong>${String.fromCharCode(65+index)})</strong> ${op}
+</div>
+`;
+
 });
 
 document.getElementById("opcoes").innerHTML=html;
-document.getElementById("barra").style.width=(i*10)+"%";
+
+document.getElementById("barra").style.width=
+((i)/10)*100 + "%";
+
 }
 
 function responder(index){
+
 if(respondeu)return;
+
 respondeu=true;
 
 let p=perguntas[nivel][i];
@@ -253,32 +716,117 @@ let correta=p.r;
 let opcoes=document.querySelectorAll(".opcao");
 
 opcoes.forEach((el,idx)=>{
-if(idx===correta) el.classList.add("correto");
-if(idx===index && idx!==correta) el.classList.add("errado");
+
+if(idx===correta){
+el.classList.add("correto");
+}
+
+if(idx===index && idx!==correta){
+el.classList.add("errado");
+}
+
 });
 
 if(index===correta){
+
 nota++;
-document.getElementById("feedback").innerHTML="✅ Resposta correta.";
-}else{
+
 document.getElementById("feedback").innerHTML=
-`❌ Resposta incorreta<br><b>Correta:</b> ${String.fromCharCode(65+correta)}<br>${p.exp}`;
+"✅ Excelente! Você acertou.";
+
+}else{
+
+document.getElementById("feedback").innerHTML=
+`
+❌ Resposta incorreta.<br><br>
+<b>Resposta correta:</b> ${String.fromCharCode(65+correta)}<br>
+${p.exp}
+`;
+
 }
+
 }
 
 function proxima(){
-if(!respondeu){alert("Responda primeiro!");return;}
+
+if(!respondeu){
+
+alert("Responda a pergunta antes de continuar.");
+return;
+
+}
+
 i++;
-if(i<10) mostrar();
-else finalizar();
+
+if(i<10){
+
+mostrar();
+
+}else{
+
+finalizar();
+
+}
+
+}
+
+function pularPergunta(){
+
+i++;
+
+if(i<10){
+
+mostrar();
+
+}else{
+
+finalizar();
+
+}
+
+}
+
+function voltarInicio(){
+
+location.reload();
+
 }
 
 function finalizar(){
+
 document.getElementById("quiz").classList.add("hidden");
-let msg=`Nota: ${nota}/10<br>`;
-msg+= nota>=6 ? "🎉 Parabéns!" : "❌ Tente novamente";
-msg+= `<br><button onclick="location.reload()">Voltar ao início</button>`;
-document.getElementById("resultado").innerHTML=msg;
+
+let mensagem = nota >= 7
+? "🎉 Excelente desempenho!"
+: nota >=5
+? "👍 Bom resultado!"
+: "📚 Continue praticando!";
+
+document.getElementById("resultado").innerHTML=
+`
+<div class="card resultado-box">
+
+<h2>Resultado Final</h2>
+
+<div class="nota">${nota}/10</div>
+
+<p>${mensagem}</p>
+
+<div class="acoes" style="margin-top:30px">
+
+<button class="btn btn-sec" onclick="location.reload()">
+⬅ Voltar ao início
+</button>
+
+<button class="btn btn-next" onclick="iniciar()">
+🔄 Refazer Quiz
+</button>
+
+</div>
+
+</div>
+`;
+
 }
 
 </script>
